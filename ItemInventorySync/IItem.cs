@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ItemInventorySync
 {
-    public interface IItemInventory
+    public interface IItem
     {
         string Name { get; set; }
-        string IncomeAccount { get; set; }
         string ExcelID { get; set; }
+        string IncomeAccount { get; set; }
         Status Status { get; set; }
     }
 

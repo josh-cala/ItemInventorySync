@@ -4,9 +4,9 @@ using QBFC16Lib;
 
 namespace ItemInventorySync
 {
-    public class ItemInventoryAdder
+    public class ItemAdder
     {
-        public static List<IItemInventory> Add(List<IItemInventory> itemInventoryList)
+        public static List<IItem> Add(List<IItem> itemInventoryList)
         {
             QBSessionManager sessionManager = new QBSessionManager();
 

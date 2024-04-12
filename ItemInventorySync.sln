@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemInventorySync", "ItemInventorySync\ItemInventorySync.csproj", "{5864491D-16F0-4A20-AF25-60B3C0580AD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemInventorySync", "ItemInventorySync\ItemInventorySync.csproj", "{5864491D-16F0-4A20-AF25-60B3C0580AD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemInventorySyncTest", "ItemInventorySyncTest\ItemInventorySyncTest.csproj", "{C6B333C8-3728-4EDF-A1EE-E4E852B480A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemInventorySync.Tests", "ItemInventorySync.Tests\ItemInventorySync.Tests.csproj", "{C6B333C8-3728-4EDF-A1EE-E4E852B480A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemInventorySyncUI", "ItemInventorySyncUI\ItemInventorySyncUI.csproj", "{3EB28FC2-55C1-4658-9085-62EA876DE1FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C6B333C8-3728-4EDF-A1EE-E4E852B480A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6B333C8-3728-4EDF-A1EE-E4E852B480A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6B333C8-3728-4EDF-A1EE-E4E852B480A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EB28FC2-55C1-4658-9085-62EA876DE1FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EB28FC2-55C1-4658-9085-62EA876DE1FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EB28FC2-55C1-4658-9085-62EA876DE1FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EB28FC2-55C1-4658-9085-62EA876DE1FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
