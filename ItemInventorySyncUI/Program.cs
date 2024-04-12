@@ -4,7 +4,7 @@ List<IItem> itemsAdded = new List<IItem>();
 itemsAdded.Add(new QBItem("test add", "62", "Materials"));
 ItemAdder.Add(itemsAdded);
 
-List<QBItem> items = QBItemReader.DoPartsQuery();
+List<QBItem> items = QBItemReader.ReadItems();
 
 Console.WriteLine(items.Count);
 foreach(QBItem item in items)

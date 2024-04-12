@@ -6,7 +6,7 @@ namespace ItemInventorySync
 {
     public class QBItemReader
     {
-        public static List<QBItem> DoPartsQuery()
+        public static List<QBItem> ReadItems()
         {
             //Create the session Manager object
             QBSessionManager sessionManager = new QBSessionManager();
@@ -102,7 +102,7 @@ namespace ItemInventorySync
         // This method accepts a list of Items and uses their Names to return a list of corresponding QBID's
         public static List<String> GetQBIDs(List<IItem> items)
         {
-            List<QBItem> allItems = DoPartsQuery();
+            List<QBItem> allItems = ReadItems();
             List<String> idList = new List<String>();
 
             for (int i = 0; i < items.Count; i++)
