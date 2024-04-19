@@ -17,22 +17,15 @@ namespace ItemInventorySync.Tests
             itemsAdded.Add(new QBItem("readTest_1", "1", "Materials"));
             itemsAdded.Add(new QBItem("readTest_2", "2", "Materials"));
             itemsAdded.Add(new QBItem("readTest_3", "3", "Materials"));
-
             itemsAdded = ItemAdder.Add(itemsAdded);
 
             List<QBItem> itemsAfterAdd = QBItemReader.ReadItems();
-            int newItemCount = itemsAfterAdd.Count;
 
-            List<String> ids = QBItemReader.GetQBIDs(itemsAdded);
-            List<QBItem> itemsDeleted = new List<QBItem>();
-
-            foreach (string id in ids)
-            {
-                itemsDeleted.Add(new QBItem(id));
-            }
+            List<QBItem> itemsDeleted = QBItemReader.GetQBItems(itemsAdded);
             ItemDeleter.Delete(itemsDeleted);
 
-            Assert.Equal(itemsBeforeAdd.Count()+3, newItemCount);
+            Assert.Equal(itemsBeforeAdd.Count+3, itemsAfterAdd.Count);
+            Assert.Equal(itemsAdded.Count, itemsDeleted.Count);
         }
     }
 }

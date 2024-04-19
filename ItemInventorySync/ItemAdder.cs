@@ -11,10 +11,10 @@ namespace ItemInventorySync
             QBSessionManager sessionManager = new QBSessionManager();
 
             //Connect to QuickBooks and begin a session
-            sessionManager.OpenConnection("", "Item Inventory Sync");
+            sessionManager.OpenConnection("", "ItemAdder");
             sessionManager.BeginSession("", ENOpenMode.omDontCare);
 
-            foreach (var itemInventory in itemInventoryList)
+            foreach (IItem itemInventory in itemInventoryList)
             {
                 try
                 {
@@ -33,7 +33,7 @@ namespace ItemInventorySync
                     // Send the request and get the response from QuickBooks
                     IMsgSetResponse responseMsgSet = sessionManager.DoRequests(requestMsgSet);
 
-                    // Determine the result
+                    // Determine the itemsAdded
                     if (IsRequestSuccessful(responseMsgSet))
                     {
                         itemInventory.Status = Status.Succeeded;

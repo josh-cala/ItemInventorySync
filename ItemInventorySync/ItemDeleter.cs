@@ -25,6 +25,8 @@ namespace ItemInventorySync
                 requestMsgSet.Attributes.OnError = ENRqOnError.roeContinue;
 
                 IListDel ListDelRq = requestMsgSet.AppendListDelRq();
+                
+                //Set the type of the list to be deleted
                 ListDelRq.ListDelType.SetValue(ENListDelType.ldtItemInventory);
 
                 //Connect to QuickBooks and begin a session
@@ -51,6 +53,7 @@ namespace ItemInventorySync
                 sessionManager.EndSession();
                 sessionManager.CloseConnection();
             }
+
             return items;
         }
 

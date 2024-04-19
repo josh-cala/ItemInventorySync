@@ -1,18 +1,27 @@
 ﻿using ItemInventorySync;
 
 List<IItem> itemsAdded = new List<IItem>();
-itemsAdded.Add(new QBItem("test add", "62", "Materials"));
-ItemAdder.Add(itemsAdded);
+itemsAdded.Add(new QBItem("original name", "1", "Materials"));
 
-List<QBItem> items = QBItemReader.ReadItems();
-
-Console.WriteLine(items.Count);
-foreach(QBItem item in items)
+itemsAdded = ItemAdder.Add(itemsAdded);
+for (int i = 0; i < itemsAdded.Count(); i++)
 {
-    Console.WriteLine(item.ToString());
+    Console.WriteLine("Added: " + itemsAdded[i]);
 }
 
-List<QBItem> itemsDeleted = new List<QBItem>();
-itemsDeleted.Add(items[1]);
+List<QBItem> itemsUpdated = QBItemReader.GetQBItems(itemsAdded);
+itemsUpdated[0].Name = "changed name";
 
-ItemDeleter.Delete(itemsDeleted);
+itemsUpdated = ItemUpdater.Update(itemsUpdated);
+for (int i = 0; i < itemsUpdated.Count(); i++)
+{
+    Console.WriteLine("Updated: "+ itemsUpdated[i]);
+}
+
+List<QBItem> itemsDeleted = itemsUpdated;
+
+itemsDeleted = ItemDeleter.Delete(itemsDeleted);
+for (int i = 0; i < itemsDeleted.Count(); i++)
+{
+    Console.WriteLine("Deleted: " + itemsDeleted[i]);
+}

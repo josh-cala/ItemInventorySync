@@ -22,17 +22,9 @@ namespace ItemInventorySync.Tests
             itemsAdded.Add(new QBItem("test 1", "1", "Materials"));
             itemsAdded.Add(new QBItem("test 2", "2", "Materials"));
             itemsAdded.Add(new QBItem("test 3", "3", "Materials"));
-
             itemsAdded = ItemAdder.Add(itemsAdded);
 
-            List<String> ids = QBItemReader.GetQBIDs(itemsAdded);
-            List<QBItem> itemsDeleted = new List<QBItem>();
-
-            foreach (string id in ids)
-            {
-                itemsDeleted.Add(new QBItem(id));
-            }
-
+            List<QBItem> itemsDeleted = QBItemReader.GetQBItems(itemsAdded);
             itemsDeleted = ItemDeleter.Delete(itemsDeleted);
 
             Assert.Equal(itemsAdded.Count(), itemsDeleted.Count());
@@ -49,36 +41,30 @@ namespace ItemInventorySync.Tests
         {
             List<IItem> itemsAdded = new List<IItem>();
             itemsAdded.Add(new QBItem("test 4", "4", "Materials"));
-
             itemsAdded = ItemAdder.Add(itemsAdded);
 
-            List<String> ids = QBItemReader.GetQBIDs(itemsAdded);
-
-            List<QBItem> itemsDeleted = new List<QBItem>();
-            foreach (string id in ids)
-            {
-                itemsDeleted.Add(new QBItem(id));
-                itemsDeleted.Add(new QBItem(id));
-            }
-
-            itemsDeleted = ItemDeleter.Delete(itemsDeleted);
+            List<QBItem> itemsDeleted = QBItemReader.GetQBItems(itemsAdded);
+            itemsDeleted = ItemDeleter.Delete(itemsDeleted); // Delete first time
 
             Assert.Equal(Status.Succeeded, itemsAdded[0].Status);
             Assert.Equal(Status.Succeeded, itemsDeleted[0].Status);
-            Assert.Equal(Status.Failed, itemsDeleted[1].Status);
+
+            itemsDeleted = ItemDeleter.Delete(itemsDeleted); // Delete second time
+
+            Assert.Equal(Status.Failed, itemsDeleted[0].Status);
         }
 
         [Fact]
         public void Delete_AllInvalid_AllFailed()
         {
-            List<QBItem> items = new List<QBItem>();
-            items.Add(new QBItem("-1"));
-            items.Add(new QBItem("-2"));
-            items.Add(new QBItem("-3"));
+            List<QBItem> itemsDeleted = new List<QBItem>();
+            itemsDeleted.Add(new QBItem("-1"));
+            itemsDeleted.Add(new QBItem("-2"));
+            itemsDeleted.Add(new QBItem("-3"));
 
-            items = ItemDeleter.Delete(items);
+            itemsDeleted = ItemDeleter.Delete(itemsDeleted);
 
-            foreach (QBItem item in items)
+            foreach (QBItem item in itemsDeleted)
             {
                 Assert.Equal(Status.Failed, item.Status);
             }
