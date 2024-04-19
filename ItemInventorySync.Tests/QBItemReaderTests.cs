@@ -8,7 +8,6 @@ namespace ItemInventorySync.Tests
 {
     public class QBItemReaderTests
     {
-        // This test does not work yet
         [Fact]
         public void ReadItems_AddItems_ContainsItems()
         {
@@ -22,8 +21,7 @@ namespace ItemInventorySync.Tests
             itemsAdded = ItemAdder.Add(itemsAdded);
 
             List<QBItem> itemsAfterAdd = QBItemReader.ReadItems();
-
-            Assert.Equal(itemsBeforeAdd.Count()+3, itemsAfterAdd.Count());
+            int newItemCount = itemsAfterAdd.Count;
 
             List<String> ids = QBItemReader.GetQBIDs(itemsAdded);
             List<QBItem> itemsDeleted = new List<QBItem>();
@@ -33,6 +31,8 @@ namespace ItemInventorySync.Tests
                 itemsDeleted.Add(new QBItem(id));
             }
             ItemDeleter.Delete(itemsDeleted);
+
+            Assert.Equal(itemsBeforeAdd.Count()+3, newItemCount);
         }
     }
 }
