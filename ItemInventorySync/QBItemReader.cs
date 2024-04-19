@@ -99,16 +99,16 @@ namespace ItemInventorySync
             return items;
         }
 
-        // Accepts a list of Items and uses their Names to return a list of corresponding QBID's
+        // Accepts a list of IItems and uses their Names to return a list of corresponding QBItems
         public static List<QBItem> GetQBItems(List<IItem> items)
         {
             List<QBItem> allItems = ReadItems();
             List<QBItem> itemList = new List<QBItem>();
 
-            // Loop through the list of given Items to find their QBID's
+            // Loop through the list of given IItems
             for (int i = 0; i < items.Count; i++)
             {
-                // Match the current Item Name to an Item Name found within QuickBooks, then add its QBID to idList
+                // Match the current Item Name to an Item Name found within QuickBooks, then add the QBTerm version to itemList
                 QBItem? itemMatch = allItems.Find(x => x.Name == items[i].Name);
                 if (itemMatch != null)
                 {
