@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QBFC16Lib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,26 @@ namespace ItemInventorySync.Tests
 
             Assert.Equal(itemsBeforeAdd.Count+3, itemsAfterAdd.Count);
             Assert.Equal(itemsAdded.Count, itemsDeleted.Count);
+        }
+
+        [Fact]
+        public void GetQBItems_ReadItems_FindItems()
+        {
+            List<QBItem> itemsRead = QBItemReader.ReadItems();
+            List<IItem> itemsToRetrieve = new List<IItem>();
+
+            foreach (QBItem item in itemsRead)
+            {
+                itemsToRetrieve.Add(item);
+            }
+
+            List<QBItem> itemsRetrieved = QBItemReader.GetQBItems(itemsToRetrieve);
+
+            Assert.Equal(itemsToRetrieve.Count, itemsRetrieved.Count);
+            for (int i = 0; i < itemsToRetrieve.Count; i++)
+            {
+                Assert.Equal(itemsToRetrieve[i].Name, itemsRetrieved[i].Name);
+            }
         }
     }
 }

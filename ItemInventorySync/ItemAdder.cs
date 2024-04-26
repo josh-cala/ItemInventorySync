@@ -45,7 +45,7 @@ namespace ItemInventorySync
                 }
                 catch
                 {
-                    // In case of an exception, mark the term as failed
+                    // In case of an exception, mark the item as failed
                     itemInventory.Status = Status.Failed;
                 }
             }

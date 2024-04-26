@@ -33,11 +33,15 @@ namespace ItemInventorySync
                     //Set field value for EditSequence
                     ItemInventoryModRq.EditSequence.SetValue(item.Rev);
 
+                    //Update field value for Name
                     ItemInventoryModRq.Name.SetValue(item.Name);
+
+                    /* Optional fields to be updated
                     ItemInventoryModRq.COGSAccountRef.FullName.SetValue("Materials");
                     ItemInventoryModRq.IncomeAccountRef.FullName.SetValue(item.IncomeAccount);
                     ItemInventoryModRq.AssetAccountRef.FullName.SetValue("Inventory");
                     ItemInventoryModRq.ManufacturerPartNumber.SetValue(item.ExcelID);
+                    */
 
                     //Send the request and get the response from QuickBooks
                     IMsgSetResponse responseMsgSet = sessionManager.DoRequests(requestMsgSet);
